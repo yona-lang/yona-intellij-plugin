@@ -1,0 +1,51 @@
+plugins {
+  id 'java'
+  id 'org.jetbrains.intellij' version '0.4.21'
+  id 'antlr'
+}
+
+group 'org.intellij.sdk'
+version '2.0.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+test {
+  // This path value is machine-specific placeholder text.
+  // Set idea.home.path to the absolute path to the intellij-community source
+  // on your local machine.
+  // Use variants described in https://docs.gradle.org/current/userguide/build_environment.html
+  // for real world projects.
+  systemProperty "idea.home.path", "C:\\Users\\kovar\\devel\\yatta-intellij-plugin\\"
+}
+
+// Include the generated files in the source set
+sourceSets.main.java.srcDirs 'src/main/gen'
+
+dependencies {
+  antlr("org.antlr:antlr4:4.7.2")
+  implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+  version = '2020.1'
+  plugins = ['java']
+}
+
+buildSearchableOptions {
+  enabled = false
+}
+
+patchPluginXml {
+  version = project.version
+  sinceBuild = '201'
+  untilBuild = '201.*'
+}
+
+generateGrammarSource {
+  arguments += ["-package", "org.yatta.intellij.plugin.parser", "-Xexact-output-dir"]
+}
