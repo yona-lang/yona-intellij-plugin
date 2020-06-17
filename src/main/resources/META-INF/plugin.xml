@@ -11,17 +11,25 @@
   <depends>com.intellij.modules.java</depends>
 
   <!-- Text to display as description on Preferences/Settings | Plugin page  -->
-<!--  <description>-->
-<!--  </description>-->
-<!--  <change-notes>-->
-<!--  </change-notes>-->
+  <description>
+    <![CDATA[
+    This plugin provides syntax highlighting for <a href="https://yatta-lang.org">Yatta Language</a>.
+    ]]>
+  </description>
+  <change-notes>
+    <![CDATA[
+    <ul>
+    <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
+    </ul>
+        ]]>
+  </change-notes>
 
   <!-- Text to display as company information on Preferences/Settings | Plugin page -->
   <vendor url="https://yatta-lang.org">Yatta Language</vendor>
 
   <extensions defaultExtensionNs="com.intellij">
     <fileType name="Yatta File" implementationClass="org.yatta.intellij.plugin.YattaFileType" fieldName="INSTANCE"
-              language="Yatta" extensions="yatta" />
+              language="Yatta" extensions="yatta"/>
     <lang.parserDefinition language="Yatta" implementationClass="org.yatta.intellij.plugin.YattaParserDefinition"/>
     <lang.syntaxHighlighterFactory language="Yatta"
                                    implementationClass="org.yatta.intellij.plugin.YattaSyntaxHighlighterFactory"/>
