@@ -39,10 +39,6 @@ public class YattaSyntaxHighlighter extends SyntaxHighlighterBase {
       createTextAttributesKey("YATTA_LABEL", DefaultLanguageHighlighterColors.LABEL);
   public static final TextAttributesKey OPERATION =
       createTextAttributesKey("YATTA_OPERATION", DefaultLanguageHighlighterColors.OPERATION_SIGN);
-  public static final TextAttributesKey FUNCTION_DECLARATION =
-      createTextAttributesKey("YATTA_FUNCTION_DECLARATION", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
-  public static final TextAttributesKey INTERFACE_NAME =
-      createTextAttributesKey("YATTA_INTERFACE_NAME", DefaultLanguageHighlighterColors.INTERFACE_NAME);
 
   static {
     PSIElementTypeFactory.defineLanguageIElementTypes(YattaLanguage.INSTANCE, YattaParser.tokenNames, YattaParser.ruleNames);
@@ -58,7 +54,7 @@ public class YattaSyntaxHighlighter extends SyntaxHighlighterBase {
   @NotNull
   @Override
   public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-    if (!(tokenType instanceof TokenIElementType)) return EMPTY_KEYS;
+    if (!(tokenType instanceof TokenIElementType)) return TextAttributesKey.EMPTY_ARRAY;
     TokenIElementType myType = (TokenIElementType) tokenType;
     int ttype = myType.getANTLRTokenType();
     TextAttributesKey attrKey;
@@ -90,8 +86,16 @@ public class YattaSyntaxHighlighter extends SyntaxHighlighterBase {
       case YattaLexer.KW_WITH:
         attrKey = KEYWORD;
         break;
+      case YattaLexer.INTERPOLATED_REGULAR_STRING_START:
       case YattaLexer.REGULAR_CHAR_INSIDE:
       case YattaLexer.REGULAR_STRING_INSIDE:
+      case YattaLexer.CHARACTER_LITERAL:
+      case YattaLexer.DOUBLE_CURLY_INSIDE:
+      case YattaLexer.OPEN_BRACE_INSIDE:
+      case YattaLexer.DOUBLE_QUOTE_INSIDE:
+      case YattaLexer.DOUBLE_CURLY_CLOSE_INSIDE:
+      case YattaLexer.CLOSE_BRACE_INSIDE:
+      case YattaLexer.FORMAT_STRING:
         attrKey = STRING;
         break;
       case YattaLexer.COMMENT:
@@ -125,6 +129,7 @@ public class YattaSyntaxHighlighter extends SyntaxHighlighterBase {
         attrKey = NUMBER;
         break;
       case YattaLexer.UNDERSCORE:
+      case YattaLexer.SYMBOL:
         attrKey = LABEL;
         break;
       case YattaLexer.OP_ASSIGN:
@@ -156,13 +161,9 @@ public class YattaSyntaxHighlighter extends SyntaxHighlighterBase {
       case YattaLexer.OP_JOIN:
       case YattaLexer.OP_PIPE_L:
       case YattaLexer.OP_PIPE_R:
-        attrKey = OPERATION;
-        break;
       case YattaLexer.VLINE:
-        attrKey = OPERATION;
-        break;
       case YattaLexer.BACKSLASH:
-        attrKey = INTERFACE_NAME;
+        attrKey = OPERATION;
         break;
       default:
         return TextAttributesKey.EMPTY_ARRAY;

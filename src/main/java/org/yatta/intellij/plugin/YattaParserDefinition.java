@@ -23,16 +23,26 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
 import org.yatta.intellij.plugin.parser.YattaLexer;
 import org.yatta.intellij.plugin.parser.YattaParser;
+import org.yatta.intellij.plugin.psi.AliasSubtree;
+import org.yatta.intellij.plugin.psi.BlockSubtree;
+import org.yatta.intellij.plugin.psi.CallSubtree;
+import org.yatta.intellij.plugin.psi.FunctionSubtree;
+
+import java.util.List;
 
 public class YattaParserDefinition implements ParserDefinition {
   public static final IFileElementType FILE = new IFileElementType(YattaLanguage.INSTANCE);
 
+  public static TokenIElementType ID;
+
   static {
     PSIElementTypeFactory.defineLanguageIElementTypes(YattaLanguage.INSTANCE, YattaParser.tokenNames, YattaParser.ruleNames);
+    List<TokenIElementType> tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(YattaLanguage.INSTANCE);
+    ID = tokenIElementTypes.get(YattaLexer.LOWERCASE_NAME);
   }
 
   public static final TokenSet COMMENTS = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.COMMENT);
-  public static final TokenSet WHITESPACE = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.WS, YattaLexer.NEWLINE, YattaLexer.HIDDEN);
+  public static final TokenSet WHITESPACE = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.WS);
   public static final TokenSet STRING = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.CHARACTER_LITERAL);
 
   @NotNull
@@ -133,6 +143,15 @@ public class YattaParserDefinition implements ParserDefinition {
     }
     RuleIElementType ruleElType = (RuleIElementType) elType;
     switch (ruleElType.getRuleIndex()) {
+      case YattaParser.RULE_function:
+        return new FunctionSubtree(node, elType);
+      case YattaParser.RULE_alias:
+        return new AliasSubtree(node, elType);
+      case YattaParser.RULE_doExpr:
+      case YattaParser.RULE_let:
+        return new BlockSubtree(node);
+      case YattaParser.RULE_apply:
+        return new CallSubtree(node);
       default:
         return new ANTLRPsiNode(node);
     }
