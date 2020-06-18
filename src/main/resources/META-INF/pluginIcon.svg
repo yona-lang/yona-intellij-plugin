@@ -7,38 +7,38 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="40"
-   height="40"
-   viewBox="0 0 10.583333 10.583334"
-   version="1.1"
-   id="svg8"
+   sodipodi:docname="plugin-logo.svg"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="plugin-logo.svg">
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 10.583333 10.583334"
+   height="40"
+   width="40">
   <defs
      id="defs2" />
   <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="15.892857"
-     inkscape:cy="41.839286"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     inkscape:document-rotation="0"
-     showgrid="true"
-     units="px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1137"
-     inkscape:window-x="-8"
+     inkscape:window-maximized="1"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-x="-8"
+     inkscape:window-height="1137"
+     inkscape:window-width="1920"
+     units="px"
+     showgrid="true"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     inkscape:cy="41.839286"
+     inkscape:cx="15.892857"
+     inkscape:zoom="5.6"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base">
     <inkscape:grid
-       type="xygrid"
-       id="grid18" />
+       id="grid18"
+       type="xygrid" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -53,20 +53,18 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
+     id="layer1"
      inkscape:groupmode="layer"
-     id="layer1">
-    <text
-       transform="scale(1.0385338,0.96289599)"
+     inkscape:label="Layer 1">
+    <g
+       style="font-size:14.1869px;line-height:1.25;font-family:'Luckiest Guy';-inkscape-font-specification:'Luckiest Guy';fill:#ef4821;fill-opacity:1;stroke-width:0.354672"
        id="text20"
-       y="10.164487"
-       x="0.42640632"
-       style="font-size:14.1869px;line-height:1.25;font-family:'Luckiest Guy';-inkscape-font-specification:'Luckiest Guy';stroke-width:0.354672;fill:#ef4821;fill-opacity:1;"
-       xml:space="preserve"><tspan
-         style="stroke-width:0.354672;fill:#ef4821;fill-opacity:1;"
-         y="10.164487"
-         x="0.42640632"
-         id="tspan18"
-         sodipodi:role="line">Y</tspan></text>
+       transform="scale(1.0385338,0.96289599)"
+       aria-label="Y">
+      <path
+         id="path841"
+         style="fill:#ef4821;fill-opacity:1;stroke-width:0.354672"
+         d="M 9.681142,0.7850617 5.8711834,6.1051492 5.6910763,10.441575 H 2.4075848 L 2.4907111,6.132858 0.50953269,0.99287762 4.0424033,0.54953699 4.5965791,3.5420862 6.3560872,0.54953699 Z" />
+    </g>
   </g>
 </svg>
