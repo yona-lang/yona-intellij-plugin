@@ -19,9 +19,10 @@
   <change-notes>
     <![CDATA[
     <ul>
-    <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
+       <li><b>0.0.2</b>Updated plugin icon</li>
+       <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
     </ul>
-        ]]>
+    ]]>
   </change-notes>
 
   <!-- Text to display as company information on Preferences/Settings | Plugin page -->
