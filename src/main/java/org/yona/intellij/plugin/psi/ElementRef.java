@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin.psi;
+package org.yona.intellij.plugin.psi;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;

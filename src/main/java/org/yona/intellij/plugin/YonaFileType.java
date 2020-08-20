@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin;
+package org.yona.intellij.plugin;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NotNull;
@@ -6,34 +6,34 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-public class YattaFileType extends LanguageFileType {
-  public static final YattaFileType INSTANCE = new YattaFileType();
+public class YonaFileType extends LanguageFileType {
+  public static final YonaFileType INSTANCE = new YonaFileType();
 
-  private YattaFileType() {
-    super(YattaLanguage.INSTANCE);
+  private YonaFileType() {
+    super(YonaLanguage.INSTANCE);
   }
 
   @NotNull
   @Override
   public String getName() {
-    return "Yatta File";
+    return "Yona File";
   }
 
   @NotNull
   @Override
   public String getDescription() {
-    return "Yatta language file";
+    return "Yona language file";
   }
 
   @NotNull
   @Override
   public String getDefaultExtension() {
-    return "yatta";
+    return "yona";
   }
 
   @Nullable
   @Override
   public Icon getIcon() {
-    return YattaIcons.FILE;
+    return YonaIcons.FILE;
   }
 }

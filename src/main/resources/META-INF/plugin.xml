@@ -1,10 +1,10 @@
 <idea-plugin>
 
   <!--  Unique id for this plugin. Must stay constant for the life of the plugin.  -->
-  <id>org.yatta.intellij.plugin</id>
+  <id>org.yona.intellij.plugin</id>
 
   <!-- Text to display as name on Preferences/Settings | Plugin page  -->
-  <name>Yatta Language</name>
+  <name>Yona Language</name>
 
   <!-- Product and plugin compatibility requirements -->
   <depends>com.intellij.modules.platform</depends>
@@ -13,26 +13,25 @@
   <!-- Text to display as description on Preferences/Settings | Plugin page  -->
   <description>
     <![CDATA[
-    This plugin provides syntax highlighting for <a href="https://yatta-lang.org">Yatta Language</a>.
+    This plugin provides syntax highlighting for <a href="https://yona-lang.org">Yona Language</a>.
     ]]>
   </description>
   <change-notes>
     <![CDATA[
     <ul>
-       <li><b>0.0.3</b>Updated plugin icon</li>
        <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
     </ul>
     ]]>
   </change-notes>
 
   <!-- Text to display as company information on Preferences/Settings | Plugin page -->
-  <vendor url="https://yatta-lang.org">Yatta Language</vendor>
+  <vendor url="https://yona-lang.org">Yona Language</vendor>
 
   <extensions defaultExtensionNs="com.intellij">
-    <fileType name="Yatta File" implementationClass="org.yatta.intellij.plugin.YattaFileType" fieldName="INSTANCE"
-              language="Yatta" extensions="yatta"/>
-    <lang.parserDefinition language="Yatta" implementationClass="org.yatta.intellij.plugin.YattaParserDefinition"/>
-    <lang.syntaxHighlighterFactory language="Yatta"
-                                   implementationClass="org.yatta.intellij.plugin.YattaSyntaxHighlighterFactory"/>
+    <fileType name="Yona File" implementationClass="org.yona.intellij.plugin.YonaFileType" fieldName="INSTANCE"
+              language="Yona" extensions="yona"/>
+    <lang.parserDefinition language="Yona" implementationClass="org.yona.intellij.plugin.YonaParserDefinition"/>
+    <lang.syntaxHighlighterFactory language="Yona"
+                                   implementationClass="org.yona.intellij.plugin.YonaSyntaxHighlighterFactory"/>
   </extensions>
 </idea-plugin>

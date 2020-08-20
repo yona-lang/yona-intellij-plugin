@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin;
+package org.yona.intellij.plugin;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -21,48 +21,48 @@ import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
-import org.yatta.intellij.plugin.parser.YattaLexer;
-import org.yatta.intellij.plugin.parser.YattaParser;
-import org.yatta.intellij.plugin.psi.AliasSubtree;
-import org.yatta.intellij.plugin.psi.BlockSubtree;
-import org.yatta.intellij.plugin.psi.CallSubtree;
-import org.yatta.intellij.plugin.psi.FunctionSubtree;
+import org.yona.intellij.plugin.psi.AliasSubtree;
+import org.yona.intellij.plugin.psi.BlockSubtree;
+import org.yona.intellij.plugin.psi.CallSubtree;
+import org.yona.intellij.plugin.psi.FunctionSubtree;
+import yona.parser.YonaLexer;
+import yona.parser.YonaParser;
 
 import java.util.List;
 
-public class YattaParserDefinition implements ParserDefinition {
-  public static final IFileElementType FILE = new IFileElementType(YattaLanguage.INSTANCE);
+public class YonaParserDefinition implements ParserDefinition {
+  public static final IFileElementType FILE = new IFileElementType(YonaLanguage.INSTANCE);
 
   public static TokenIElementType ID;
 
   static {
-    PSIElementTypeFactory.defineLanguageIElementTypes(YattaLanguage.INSTANCE, YattaParser.tokenNames, YattaParser.ruleNames);
-    List<TokenIElementType> tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(YattaLanguage.INSTANCE);
-    ID = tokenIElementTypes.get(YattaLexer.LOWERCASE_NAME);
+    PSIElementTypeFactory.defineLanguageIElementTypes(YonaLanguage.INSTANCE, YonaParser.tokenNames, YonaParser.ruleNames);
+    List<TokenIElementType> tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(YonaLanguage.INSTANCE);
+    ID = tokenIElementTypes.get(YonaLexer.LOWERCASE_NAME);
   }
 
-  public static final TokenSet COMMENTS = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.COMMENT);
-  public static final TokenSet WHITESPACE = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.WS);
-  public static final TokenSet STRING = PSIElementTypeFactory.createTokenSet(YattaLanguage.INSTANCE, YattaLexer.CHARACTER_LITERAL);
+  public static final TokenSet COMMENTS = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.COMMENT);
+  public static final TokenSet WHITESPACE = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.WS);
+  public static final TokenSet STRING = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.CHARACTER_LITERAL);
 
   @NotNull
   @Override
   public Lexer createLexer(Project project) {
-    YattaLexer lexer = new YattaLexer(null);
-    return new ANTLRLexerAdaptor(YattaLanguage.INSTANCE, lexer);
+    YonaLexer lexer = new YonaLexer(null);
+    return new ANTLRLexerAdaptor(YonaLanguage.INSTANCE, lexer);
   }
 
   @NotNull
   public PsiParser createParser(final Project project) {
-    final YattaParser parser = new YattaParser(null);
-    return new ANTLRParserAdaptor(YattaLanguage.INSTANCE, parser) {
+    final YonaParser parser = new YonaParser(null);
+    return new ANTLRParserAdaptor(YonaLanguage.INSTANCE, parser) {
       @Override
       protected ParseTree parse(Parser parser, IElementType root) {
-        YattaParser yattaParser = (YattaParser) parser;
+        YonaParser yonaParser = (YonaParser) parser;
         if (root instanceof IFileElementType) {
-          return yattaParser.input();
+          return yonaParser.input();
         }
-        return yattaParser.expression();
+        return yonaParser.expression();
       }
     };
   }
@@ -108,7 +108,7 @@ public class YattaParserDefinition implements ParserDefinition {
    */
   @Override
   public PsiFile createFile(FileViewProvider viewProvider) {
-    return new YattaFile(viewProvider);
+    return new YonaFile(viewProvider);
   }
 
   /**
@@ -143,14 +143,14 @@ public class YattaParserDefinition implements ParserDefinition {
     }
     RuleIElementType ruleElType = (RuleIElementType) elType;
     switch (ruleElType.getRuleIndex()) {
-      case YattaParser.RULE_function:
+      case YonaParser.RULE_function:
         return new FunctionSubtree(node, elType);
-      case YattaParser.RULE_alias:
+      case YonaParser.RULE_alias:
         return new AliasSubtree(node, elType);
-      case YattaParser.RULE_doExpr:
-      case YattaParser.RULE_let:
+      case YonaParser.RULE_doExpr:
+      case YonaParser.RULE_let:
         return new BlockSubtree(node);
-      case YattaParser.RULE_apply:
+      case YonaParser.RULE_apply:
         return new CallSubtree(node);
       default:
         return new ANTLRPsiNode(node);

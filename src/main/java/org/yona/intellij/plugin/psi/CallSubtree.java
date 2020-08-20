@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin.psi;
+package org.yona.intellij.plugin.psi;
 
 import com.intellij.lang.ASTNode;
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;

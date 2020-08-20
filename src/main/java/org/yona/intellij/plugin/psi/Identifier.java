@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin.psi;
+package org.yona.intellij.plugin.psi;
 
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
@@ -10,9 +10,9 @@ import org.antlr.intellij.adaptor.psi.ANTLRPsiLeafNode;
 import org.antlr.intellij.adaptor.psi.Trees;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-import org.yatta.intellij.plugin.YattaLanguage;
-import org.yatta.intellij.plugin.YattaParserDefinition;
-import org.yatta.intellij.plugin.parser.YattaParser;
+import org.yona.intellij.plugin.YonaLanguage;
+import org.yona.intellij.plugin.YonaParserDefinition;
+import yona.parser.YonaParser;
 
 /**
  * From doc: "Every element which can be renamed or referenced
@@ -52,10 +52,10 @@ public class Identifier extends ANTLRPsiLeafNode implements PsiNamedElement {
   public PsiElement setName(@NonNls @NotNull String name) throws IncorrectOperationException {
     if (getParent() == null) return this; // weird but it happened once
     PsiElement newID = Trees.createLeafFromText(getProject(),
-        YattaLanguage.INSTANCE,
+        YonaLanguage.INSTANCE,
         getContext(),
         name,
-        YattaParserDefinition.ID);
+        YonaParserDefinition.ID);
     if (newID != null) {
       return this.replace(newID); // use replace on leaves but replaceChild on ID nodes that are part of defs/decls.
     }
@@ -83,10 +83,10 @@ public class Identifier extends ANTLRPsiLeafNode implements PsiNamedElement {
     // do not return a reference for the ID nodes in a definition
     if (elType instanceof RuleIElementType) {
       switch (((RuleIElementType) elType).getRuleIndex()) {
-        case YattaParser.RULE_expression:
-        case YattaParser.RULE_input:
+        case YonaParser.RULE_expression:
+        case YonaParser.RULE_input:
           return new AliasRef(this);
-        case YattaParser.RULE_apply:
+        case YonaParser.RULE_apply:
           return new FunctionRef(this);
       }
     }

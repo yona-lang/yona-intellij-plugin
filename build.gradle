@@ -1,16 +1,21 @@
 plugins {
   id 'java'
   id 'org.jetbrains.intellij' version '0.4.21'
-  id 'antlr'
 }
 
 group 'org.intellij.sdk'
-version '0.0.3'
+version '0.0.1'
 
 sourceCompatibility = 1.8
 
 repositories {
   mavenCentral()
+  maven {
+    url "https://oss.sonatype.org/content/repositories/snapshots/"
+  }
+  maven {
+    url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
+  }
 }
 
 test {
@@ -19,15 +24,13 @@ test {
   // on your local machine.
   // Use variants described in https://docs.gradle.org/current/userguide/build_environment.html
   // for real world projects.
-  systemProperty "idea.home.path", "C:\\Users\\kovar\\devel\\yatta-intellij-plugin\\"
+  systemProperty "idea.home.path", "/Users/akovari/devel/yona-intellij-plugin"
 }
 
-// Include the generated files in the source set
-sourceSets.main.java.srcDirs 'src/main/gen'
-
 dependencies {
-  antlr("org.antlr:antlr4:4.7.2")
-  implementation 'org.antlr:antlr4-intellij-adaptor:0.1'
+  implementation "org.antlr:antlr4-intellij-adaptor:0.1"
+  compile "com.github.akovari:antlr4-autocomplete:0.0.1-SNAPSHOT"
+  compile "org.yona-lang:parser:0.8.1-SNAPSHOT"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -43,9 +46,5 @@ buildSearchableOptions {
 patchPluginXml {
   version = project.version
   sinceBuild = '201'
-  untilBuild = '201.*'
-}
-
-generateGrammarSource {
-  arguments += ["-package", "org.yatta.intellij.plugin.parser", "-Xexact-output-dir"]
+  untilBuild = '203.*'
 }

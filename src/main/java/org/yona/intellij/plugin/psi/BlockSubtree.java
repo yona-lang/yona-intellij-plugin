@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin.psi;
+package org.yona.intellij.plugin.psi;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
@@ -8,7 +8,7 @@ import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.intellij.adaptor.psi.ScopeNode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.yatta.intellij.plugin.YattaLanguage;
+import org.yona.intellij.plugin.YonaLanguage;
 
 public class BlockSubtree extends ANTLRPsiNode implements ScopeNode {
   public BlockSubtree(@NotNull ASTNode node) {
@@ -18,7 +18,7 @@ public class BlockSubtree extends ANTLRPsiNode implements ScopeNode {
   @Nullable
   @Override
   public PsiElement resolve(PsiNamedElement element) {
-    return SymtabUtils.resolve(this, YattaLanguage.INSTANCE,
+    return SymtabUtils.resolve(this, YonaLanguage.INSTANCE,
         element, "/block/vardef/ID");
   }
 }

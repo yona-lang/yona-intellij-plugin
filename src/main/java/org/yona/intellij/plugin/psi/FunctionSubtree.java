@@ -1,4 +1,4 @@
-package org.yatta.intellij.plugin.psi;
+package org.yona.intellij.plugin.psi;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
@@ -9,7 +9,7 @@ import org.antlr.intellij.adaptor.psi.IdentifierDefSubtree;
 import org.antlr.intellij.adaptor.psi.ScopeNode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.yatta.intellij.plugin.YattaLanguage;
+import org.yona.intellij.plugin.YonaLanguage;
 
 /**
  * A subtree associated with a function definition.
@@ -23,6 +23,6 @@ public class FunctionSubtree extends IdentifierDefSubtree implements ScopeNode {
   @Nullable
   @Override
   public PsiElement resolve(PsiNamedElement element) {
-    return SymtabUtils.resolve(this, YattaLanguage.INSTANCE, element, "/script/function/ID");
+    return SymtabUtils.resolve(this, YonaLanguage.INSTANCE, element, "/script/function/ID");
   }
 }
