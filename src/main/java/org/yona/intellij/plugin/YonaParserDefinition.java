@@ -28,7 +28,7 @@ import org.yona.intellij.plugin.psi.FunctionSubtree;
 import yona.parser.YonaLexer;
 import yona.parser.YonaParser;
 
-import java.util.List;
+import static org.yona.intellij.plugin.YonaTokens.*;
 
 public class YonaParserDefinition implements ParserDefinition {
   public static final IFileElementType FILE = new IFileElementType(YonaLanguage.INSTANCE);
@@ -37,13 +37,8 @@ public class YonaParserDefinition implements ParserDefinition {
 
   static {
     PSIElementTypeFactory.defineLanguageIElementTypes(YonaLanguage.INSTANCE, YonaParser.tokenNames, YonaParser.ruleNames);
-    List<TokenIElementType> tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(YonaLanguage.INSTANCE);
-    ID = tokenIElementTypes.get(YonaLexer.LOWERCASE_NAME);
+    ID = TOKEN_ELEMENT_TYPES.get(YonaLexer.LOWERCASE_NAME);
   }
-
-  public static final TokenSet COMMENTS = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.COMMENT);
-  public static final TokenSet WHITESPACE = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.WS);
-  public static final TokenSet STRING = PSIElementTypeFactory.createTokenSet(YonaLanguage.INSTANCE, YonaLexer.CHARACTER_LITERAL);
 
   @NotNull
   @Override
