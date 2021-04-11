@@ -19,6 +19,7 @@
   <change-notes>
     <![CDATA[
     <ul>
+       <li><b>0.0.2</b>Support IDEA 2021.1, brace matching</li>
        <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
     </ul>
     ]]>
@@ -33,5 +34,6 @@
     <lang.parserDefinition language="Yona" implementationClass="org.yona.intellij.plugin.YonaParserDefinition"/>
     <lang.syntaxHighlighterFactory language="Yona"
                                    implementationClass="org.yona.intellij.plugin.YonaSyntaxHighlighterFactory"/>
+    <lang.braceMatcher language="Yona" implementationClass="org.yona.intellij.plugin.YonaBraceMatcher" />
   </extensions>
 </idea-plugin>
