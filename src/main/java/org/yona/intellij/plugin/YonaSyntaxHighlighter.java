@@ -86,16 +86,12 @@ public class YonaSyntaxHighlighter extends SyntaxHighlighterBase {
       case YonaLexer.KW_WITH:
         attrKey = KEYWORD;
         break;
-      case YonaLexer.INTERPOLATED_REGULAR_STRING_START:
-      case YonaLexer.REGULAR_CHAR_INSIDE:
+      case YonaLexer.STRING_START:
+      case YonaLexer.STRING_STOP:
       case YonaLexer.REGULAR_STRING_INSIDE:
       case YonaLexer.CHARACTER_LITERAL:
-      case YonaLexer.DOUBLE_CURLY_INSIDE:
-      case YonaLexer.OPEN_BRACE_INSIDE:
-      case YonaLexer.DOUBLE_QUOTE_INSIDE:
+      case YonaLexer.DOUBLE_CURLY_OPEN_INSIDE:
       case YonaLexer.DOUBLE_CURLY_CLOSE_INSIDE:
-      case YonaLexer.CLOSE_BRACE_INSIDE:
-      case YonaLexer.FORMAT_STRING:
         attrKey = STRING;
         break;
       case YonaLexer.COMMENT:
@@ -105,6 +101,8 @@ public class YonaSyntaxHighlighter extends SyntaxHighlighterBase {
       case YonaLexer.BRACKET_R:
         attrKey = BRACKETS;
         break;
+      case YonaLexer.OPEN_INTERP:
+      case YonaLexer.CLOSE_INTERP:
       case YonaLexer.CURLY_L:
       case YonaLexer.CURLY_R:
         attrKey = BRACES;

@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'org.intellij.sdk'
-version '0.0.3'
+version '0.0.4'
 
 repositories {
   mavenCentral()
@@ -15,6 +15,12 @@ repositories {
     url 'https://dl.bintray.com/jetbrains/intellij-plugin-service'
   }
   mavenLocal()
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(11)
+  }
 }
 
 test {
@@ -29,7 +35,7 @@ test {
 dependencies {
   implementation "org.antlr:antlr4-intellij-adaptor:0.1"
   compile "com.github.akovari:antlr4-autocomplete:0.0.1-SNAPSHOT"
-  compile "org.yona-lang:parser:0.8.1-SNAPSHOT"
+  compile "org.yona-lang:parser:0.8.2-SNAPSHOT"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
