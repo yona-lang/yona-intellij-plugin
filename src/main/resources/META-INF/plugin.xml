@@ -19,10 +19,11 @@
   <change-notes>
     <![CDATA[
     <ul>
-       <li><b>0.0.4</b>Fixed issues with string interpolation</li>
-       <li><b>0.0.3</b>Commenter support</li>
-       <li><b>0.0.2</b>Support IDEA 2021.1, brace matching</li>
-       <li><b>0.0.1</b>Initial release: basic syntax highlighting</li>
+       <li><b>0.0.5</b> Support for Idea 2021.2</li>
+       <li><b>0.0.4</b> Fixed issues with string interpolation</li>
+       <li><b>0.0.3</b> Commenter support</li>
+       <li><b>0.0.2</b> Support IDEA 2021.1, brace matching</li>
+       <li><b>0.0.1</b> Initial release: basic syntax highlighting</li>
     </ul>
     ]]>
   </change-notes>
