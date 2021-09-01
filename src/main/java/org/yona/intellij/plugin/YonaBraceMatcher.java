@@ -13,10 +13,10 @@ public class YonaBraceMatcher implements PairedBraceMatcher {
   @NotNull
   public BracePair[] getPairs() {
     return new BracePair[]{
-      new BracePair(YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.PARENS_L), YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.PARENS_R), false),
-      new BracePair(YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.BRACKET_L), YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.BRACKET_R), false),
-      new BracePair(YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.CURLY_L), YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.CURLY_R), false),
-      new BracePair(YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.OPEN_INTERP), YonaTokens.TOKEN_ELEMENT_TYPES.get(YonaLexer.CLOSE_INTERP), false),
+        new BracePair(YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.PARENS_L), YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.PARENS_R), false),
+        new BracePair(YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.BRACKET_L), YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.BRACKET_R), false),
+        new BracePair(YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.CURLY_L), YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.CURLY_R), false),
+        new BracePair(YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.OPEN_INTERP), YonaTokenTypes.TOKEN_ELEMENT_TYPES.get(YonaLexer.CLOSE_INTERP), false),
     };
   }
 

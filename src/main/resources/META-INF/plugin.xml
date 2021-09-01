@@ -1,24 +1,25 @@
 <idea-plugin>
 
-  <!--  Unique id for this plugin. Must stay constant for the life of the plugin.  -->
-  <id>org.yona.intellij.plugin</id>
+    <!--  Unique id for this plugin. Must stay constant for the life of the plugin.  -->
+    <id>org.yona.intellij.plugin</id>
 
-  <!-- Text to display as name on Preferences/Settings | Plugin page  -->
-  <name>Yona Language</name>
+    <!-- Text to display as name on Preferences/Settings | Plugin page  -->
+    <name>Yona Language</name>
 
-  <!-- Product and plugin compatibility requirements -->
-  <depends>com.intellij.modules.platform</depends>
-  <depends>com.intellij.modules.java</depends>
+    <!-- Product and plugin compatibility requirements -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
-  <!-- Text to display as description on Preferences/Settings | Plugin page  -->
-  <description>
-    <![CDATA[
+    <!-- Text to display as description on Preferences/Settings | Plugin page  -->
+    <description>
+        <![CDATA[
     This plugin provides syntax highlighting for <a href="https://yona-lang.org">Yona Language</a>.
     ]]>
-  </description>
-  <change-notes>
-    <![CDATA[
+    </description>
+    <change-notes>
+        <![CDATA[
     <ul>
+       <li><b>0.1.0</b> Structure view, references, create new yona file, search for functions, fixed icons</li>
        <li><b>0.0.5</b> Support for Idea 2021.2</li>
        <li><b>0.0.4</b> Fixed issues with string interpolation</li>
        <li><b>0.0.3</b> Commenter support</li>
@@ -26,18 +27,30 @@
        <li><b>0.0.1</b> Initial release: basic syntax highlighting</li>
     </ul>
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <!-- Text to display as company information on Preferences/Settings | Plugin page -->
-  <vendor url="https://yona-lang.org">Yona Language</vendor>
+    <!-- Text to display as company information on Preferences/Settings | Plugin page -->
+    <vendor url="https://yona-lang.org">Yona Language</vendor>
 
-  <extensions defaultExtensionNs="com.intellij">
-    <fileType name="Yona File" implementationClass="org.yona.intellij.plugin.YonaFileType" fieldName="INSTANCE"
-              language="Yona" extensions="yona"/>
-    <lang.parserDefinition language="Yona" implementationClass="org.yona.intellij.plugin.YonaParserDefinition"/>
-    <lang.syntaxHighlighterFactory language="Yona"
-                                   implementationClass="org.yona.intellij.plugin.YonaSyntaxHighlighterFactory"/>
-    <lang.braceMatcher language="Yona" implementationClass="org.yona.intellij.plugin.YonaBraceMatcher" />
-    <lang.commenter language="Yona" implementationClass="org.yona.intellij.plugin.YonaCommenter"/>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Yona File" implementationClass="org.yona.intellij.plugin.YonaFileType" fieldName="INSTANCE"
+                  language="Yona" extensions="yona"/>
+        <lang.parserDefinition language="Yona" implementationClass="org.yona.intellij.plugin.YonaParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Yona"
+                                       implementationClass="org.yona.intellij.plugin.YonaSyntaxHighlighterFactory"/>
+        <lang.braceMatcher language="Yona" implementationClass="org.yona.intellij.plugin.YonaBraceMatcher"/>
+        <lang.commenter language="Yona" implementationClass="org.yona.intellij.plugin.YonaCommenter"/>
+        <lang.psiStructureViewFactory language="Yona"
+                                      implementationClass="org.yona.intellij.plugin.structview.YonaStructureViewFactory"/>
+        <psi.referenceContributor language="Yona"
+                                  implementation="org.yona.intellij.plugin.references.YonaReferenceContributor"/>
+        <gotoSymbolContributor
+                implementation="org.yona.intellij.plugin.YonaChooseByNameContributor"/>
+    </extensions>
+    <actions>
+        <action id="org.yona.intellij.plugin.actions.NewYonaFileAction"
+                class="org.yona.intellij.plugin.actions.NewYonaFileAction">
+            <add-to-group group-id="NewGroup" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

@@ -14,30 +14,27 @@ import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor;
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory;
-import org.antlr.intellij.adaptor.lexer.RuleIElementType;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor;
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
-import org.yona.intellij.plugin.psi.AliasSubtree;
-import org.yona.intellij.plugin.psi.BlockSubtree;
-import org.yona.intellij.plugin.psi.CallSubtree;
-import org.yona.intellij.plugin.psi.FunctionSubtree;
 import yona.parser.YonaLexer;
 import yona.parser.YonaParser;
 
-import static org.yona.intellij.plugin.YonaTokens.*;
+import java.util.List;
+
+import static org.yona.intellij.plugin.YonaTokenTypes.*;
 
 public class YonaParserDefinition implements ParserDefinition {
   public static final IFileElementType FILE = new IFileElementType(YonaLanguage.INSTANCE);
-
   public static TokenIElementType ID;
 
   static {
     PSIElementTypeFactory.defineLanguageIElementTypes(YonaLanguage.INSTANCE, YonaParser.tokenNames, YonaParser.ruleNames);
-    ID = TOKEN_ELEMENT_TYPES.get(YonaLexer.LOWERCASE_NAME);
+    List<TokenIElementType> tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(YonaLanguage.INSTANCE);
+    ID = tokenIElementTypes.get(YonaLexer.LOWERCASE_NAME);
   }
 
   @NotNull
@@ -85,7 +82,7 @@ public class YonaParserDefinition implements ParserDefinition {
    * is called from {@link #createFile(FileViewProvider)} at least.
    */
   @Override
-  public IFileElementType getFileNodeType() {
+  public @NotNull IFileElementType getFileNodeType() {
     return FILE;
   }
 
@@ -102,7 +99,7 @@ public class YonaParserDefinition implements ParserDefinition {
    * it back via: {@link PsiFile#getNode}.
    */
   @Override
-  public PsiFile createFile(FileViewProvider viewProvider) {
+  public @NotNull PsiFile createFile(@NotNull FileViewProvider viewProvider) {
     return new YonaFile(viewProvider);
   }
 
@@ -129,26 +126,6 @@ public class YonaParserDefinition implements ParserDefinition {
    */
   @NotNull
   public PsiElement createElement(ASTNode node) {
-    IElementType elType = node.getElementType();
-    if (elType instanceof TokenIElementType) {
-      return new ANTLRPsiNode(node);
-    }
-    if (!(elType instanceof RuleIElementType)) {
-      return new ANTLRPsiNode(node);
-    }
-    RuleIElementType ruleElType = (RuleIElementType) elType;
-    switch (ruleElType.getRuleIndex()) {
-      case YonaParser.RULE_function:
-        return new FunctionSubtree(node, elType);
-      case YonaParser.RULE_alias:
-        return new AliasSubtree(node, elType);
-      case YonaParser.RULE_doExpr:
-      case YonaParser.RULE_let:
-        return new BlockSubtree(node);
-      case YonaParser.RULE_apply:
-        return new CallSubtree(node);
-      default:
-        return new ANTLRPsiNode(node);
-    }
+    return YonaNodeFactory.createInternalParseTreeNode(node);
   }
 }
