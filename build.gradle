@@ -1,10 +1,10 @@
 plugins {
   id 'java'
-  id 'org.jetbrains.intellij' version '1.3.0'
+  id 'org.jetbrains.intellij' version '1.6.0'
 }
 
 group 'org.intellij.sdk'
-version '0.1.1'
+version '0.1.2'
 
 repositories {
   mavenLocal()
@@ -33,13 +33,18 @@ test {
 dependencies {
   implementation "org.antlr:antlr4-intellij-adaptor:0.1"
   implementation "com.github.akovari:antlr4-autocomplete:0.0.1-SNAPSHOT"
-  implementation "org.yona-lang:parser:0.8.3-SNAPSHOT"
+  implementation "org.yona-lang:parser:0.8.4-SNAPSHOT"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-  version = '2021.3'
-  plugins = ['java', 'PsiViewer:213-SNAPSHOT']
+  version = '2022.1'
+  plugins = ['java', 'PsiViewer:221-SNAPSHOT']
+}
+
+compileJava   {
+  sourceCompatibility '11'
+  targetCompatibility '11'
 }
 
 buildSearchableOptions {
@@ -49,5 +54,5 @@ buildSearchableOptions {
 patchPluginXml {
   version = project.version
   sinceBuild = '201'
-  untilBuild = '213.*'
+  untilBuild = '221.*'
 }
