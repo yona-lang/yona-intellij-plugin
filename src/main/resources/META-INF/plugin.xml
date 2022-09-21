@@ -19,6 +19,7 @@
     <change-notes>
         <![CDATA[
     <ul>
+       <li><b>0.1.3</b> Support for Idea 2022.2</li>
        <li><b>0.1.2</b> Support for Idea 2022.1</li>
        <li><b>0.1.1</b> Support for Idea 2021.3</li>
        <li><b>0.1.0</b> Structure view, references, create new yona file, search for functions, fixed icons</li>

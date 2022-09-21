@@ -1,10 +1,10 @@
 plugins {
   id 'java'
-  id 'org.jetbrains.intellij' version '1.6.0'
+  id 'org.jetbrains.intellij' version '1.9.0'
 }
 
 group 'org.intellij.sdk'
-version '0.1.2'
+version '0.1.3'
 
 repositories {
   mavenLocal()
@@ -38,8 +38,8 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-  version = '2022.1'
-  plugins = ['java', 'PsiViewer:221-SNAPSHOT']
+  version = '2022.2'
+  plugins = ['java', 'PsiViewer:222-SNAPSHOT']
 }
 
 compileJava   {
@@ -54,5 +54,5 @@ buildSearchableOptions {
 patchPluginXml {
   version = project.version
   sinceBuild = '201'
-  untilBuild = '221.*'
+  untilBuild = '223.*'
 }
